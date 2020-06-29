@@ -370,7 +370,8 @@ class ParserTest extends AbstractTest
 
         $this->assertInstanceOf(Database::class, $database);
         $this->assertCount(1, $database->getTables());
-        $this->assertCount(1, $database->getTableByName('backslash')->getColumns());
+        $this->assertCount(2, $database->getTableByName('backslash')->getColumns());
+        $this->assertTrue($database->getTableByName('backslash')->hasColumn('column_name_with_/'));
         $this->assertCount(0, $database->getTableByName('backslash')->getPrimaryKeys());
         $this->assertCount(0, $database->getTableByName('backslash')->getIndexes());
         $this->assertEquals('utf8', $database->getTableByName('backslash')->getDefaultCharset());
